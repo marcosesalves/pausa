@@ -1,43 +1,81 @@
-# Pausa
+<p align="center">
+  <img src="src-tauri/icons/128x128@2x.png" alt="Pausa logo: Pip, a little sprout" width="128" height="128">
+</p>
 
-A small desktop companion for mindful pauses: gentle reminders, short tips, breathing exercises, water and
-posture nudges, and a sprout named Pip that grows with every pause you take. It lives in the macOS menu bar
-and Dock, and in a normal window on Windows 11. Light, dark or system theme.
+<h1 align="center">Pausa</h1>
 
-Built with Tauri 2 (Rust), React 19, TypeScript and plain CSS.
+<p align="center">
+  A small desktop companion for mindful pauses at work.<br>
+  <a href="https://www.instagram.com/pausa.companion/">Instagram</a>
+</p>
 
-## Install
+Pausa nudges you, gently and on your own schedule, to step away from the screen for a minute. Each nudge is a
+short tip: a breath, a stretch, a glance out of the window, a kind thought. Pip, a little sprout, keeps you
+company and grows with every pause you take.
 
-**Windows 11 (x64)**
+> **Beta.** Pausa is at version 0.2.0-beta.1. It works, but expect rough edges, and please tell us about them.
+
+## What it does
+
+- **Tips for short pauses.** Pick the categories you like (breathing, body scan, gratitude, nature, movement,
+  focus and more) and how often you want a nudge. Each tip opens as a calm card over your work. Take the moment, or skip it.
+- **Breathing exercises.** Six techniques (box, 4-7-8, long exhale, triangle, coherent and sigh) with a guided orb and Pip
+  breathing along. You can add a breath before or after any pause.
+- **Water and posture reminders.** Two small reminders of their own, with their own timing.
+- **Pip and the garden.** Every pause counts. Pip grows through stages and your garden fills as you go.
+- **Your rhythm.** Quiet hours, a pause button, and light, dark or system theme.
+- **Private by default.** Everything stays on your computer. The only network use is the optional feedback
+  form, and it sends only what you tick.
+
+## Install the beta
+
+### Windows 11 (64-bit)
+
+With winget:
 
 ```powershell
 winget install MarcosAlves.Pausa
 ```
 
-or download `Pausa_<version>_x64-setup.exe` from [Releases](../../releases). The installer is not code signed
-yet, so Windows SmartScreen may say "Windows protected your PC": choose **More info**, then **Run anyway**.
-Compare the SHA-256 in the release notes with `Get-FileHash <file>` if you want to be sure.
+Or download `Pausa_<version>_x64-setup.exe` from the [latest release](../../releases/latest) and run it. It
+installs for your user only, with no administrator rights.
 
-**macOS**: build it yourself for now (below).
+The installer is not code signed yet, so Windows SmartScreen may show "Windows protected your PC". Choose
+**More info**, then **Run anyway**. To check the file first, compare the SHA-256 in the release notes with
+`Get-FileHash <file>`.
 
-## Build and run
+### macOS (Apple silicon or Intel)
 
-You need Node 20+, a stable Rust toolchain and the [Tauri prerequisites](https://tauri.app/start/prerequisites/).
+There is no download for macOS yet, so build it yourself. You need [Node.js](https://nodejs.org) 20 or newer, a
+stable [Rust](https://rustup.rs) toolchain and the Xcode command line tools (`xcode-select --install`).
+
+```bash
+git clone https://github.com/marcosesalves/pausa.git
+cd pausa
+npm install
+npm run tauri build -- --bundles app
+```
+
+The app is created at `src-tauri/target/release/bundle/macos/Pausa.app`. Drag it into **Applications** and open
+it. Pausa lives in your menu bar (the sprout icon) and the Dock. Left-click the icon to open it, and use the
+right-click menu to quit.
+
+## Run it from source
 
 ```bash
 npm install
-npm run tauri dev      # run the app
-npm run tauri build    # make an installer for this machine
+npm run tauri dev
 ```
 
 Checks that CI runs: `npm run validate:tips` and `npx tsc --noEmit`. Rust tests: `cargo test` in `src-tauri`.
 
-## Feedback
+## Feedback and bugs
 
-The app has a form to send feedback or a bug report. It goes to a Supabase edge function
-(`supabase/functions/submit-feedback`). The app holds no key or access code; the function limits what it
-accepts. To enable it in your own build, set `PAUSA_FEEDBACK_URL` to your project URL when building. Without
-it the form says feedback is off. See `supabase/.env.example` for the server-side limits.
+Use **Settings, Help us improve Pausa** in the app, or the menu bar icon's menu on macOS. Reports go to a small
+Supabase function (`supabase/functions/submit-feedback`) that holds no personal data beyond what you choose to
+include. In your own build, set `PAUSA_FEEDBACK_URL` to your project URL; without it the form says feedback is
+off. You can also [open an issue](../../issues). Updates and news are on
+[Instagram](https://www.instagram.com/pausa.companion/).
 
 ## Releases
 
