@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.9.0.schema.json
+PackageIdentifier: MarcosAlves.Pausa
+PackageVersion: 0.2.0-beta.1
+InstallerType: nullsoft
+Scope: user
+InstallModes:
+  - interactive
+  - silent
+  - silentWithProgress
+UpgradeBehavior: install
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/marcosesalves/Pausa/releases/download/v0.2.0-beta.1/Pausa_0.2.0-beta.1_x64-setup.exe
+    # Replace with the SHA-256 printed in the release notes of that version
+    InstallerSha256: 0000000000000000000000000000000000000000000000000000000000000000
+ManifestType: installer
+ManifestVersion: 1.9.0

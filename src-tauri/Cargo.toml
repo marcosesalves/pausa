@@ -1,0 +1,31 @@
+[package]
+name = "pausa"
+version = "0.2.0-beta.1"
+description = "A mindful-pause companion for your macOS menu bar and Dock"
+authors = ["Marcos Alves"]
+edition = "2021"
+
+[lib]
+name = "pausa_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "macos-private-api"] }
+png = "0.17"
+tauri-plugin-opener = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-store = "2"
+tauri-plugin-autostart = "2"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rand = "0.9"
+chrono = "0.4"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+# Read the "Reduce motion" accessibility setting (see tray_icon.rs)
+objc2-app-kit = { version = "0.3", default-features = false, features = ["NSWorkspace"] }

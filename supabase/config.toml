@@ -1,0 +1,8 @@
+[api]
+enabled = true
+port = 54321
+
+# The app carries no Supabase key or access code (the installer is public). The function protects itself
+# with limits stored on the server (see submit-feedback), so the platform JWT check is off.
+[functions.submit-feedback]
+verify_jwt = false

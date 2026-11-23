@@ -1,0 +1,35 @@
+# Dependencies and build output
+node_modules
+dist
+dist-ssr
+src-tauri/target
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.local
+supabase/.temp/
+feedback-export/
+
+# Editors, OS and AI-tool files
+.vscode/
+.idea/
+.cursor/
+.claude/
+.conductor/
+.DS_Store
+*.suo
+*.sw?
+
+# Local notes, plans and design sources: kept on the machine, not in the repo
+docs/
+design/
+social/
+CLAUDE.md
+AGENTS.md

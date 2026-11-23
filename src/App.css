@@ -1,0 +1,579 @@
+/* App-level glue on top of the design system (styles.css, from design/mindfulness.css).
+   The Tauri window is transparent and frameless, so the page itself must be too. */
+html,
+body,
+#root {
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Window surface: fills the resizable window (420 x 640 by default, 360 x 520 to 960 x 900),
+   with the ambient blobs behind. The design system's fixed 320 x 450 popover size is overridden. */
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  border-radius: 0;
+  background: var(--bg);
+  /* The window is its own stacking context. The soft colour blobs (.ambient, z-index -1) then paint above
+     this background and below the content, which gives the first beta's gradient: mint at the top left,
+     leaf green at the right, butter at the bottom. Without it they hid behind the background. */
+  isolation: isolate;
+}
+
+/* First-close dialog: "Pausa keeps running". */
+.close-notice {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: color-mix(in oklch, var(--bg) 70%, transparent);
+}
+.close-notice__card {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--glass-edge), 0 18px 40px -18px rgba(0, 0, 0, 0.45);
+}
+.close-notice__title { margin: 0; font: 600 18px/1.2 var(--font-display); color: var(--text); }
+.close-notice__text { margin: 0; color: var(--text-muted); }
+.close-notice__check { display: flex; align-items: center; gap: 8px; color: var(--text-muted); cursor: pointer; }
+.close-notice__check input { width: 18px; height: 18px; accent-color: var(--accent); }
+.close-notice__actions { display: flex; gap: 8px; margin-top: 4px; }
+.close-notice__actions .btn { flex: 1; }
+
+/* Focus notification while a guided breathing technique runs: orb on top, centered. */
+.focus-card--exercise {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  padding: 24px 22px 22px;
+  gap: 14px;
+}
+.focus-card--exercise .focus-card__media {
+  width: 210px;
+  height: 210px;
+  background: none;
+  box-shadow: none;
+}
+.focus-card--exercise .focus-card__body { align-items: center; gap: 6px; }
+.focus-card--exercise .focus-card__actions { margin-top: 4px; }
+
+/* Two more breathing patterns, built like the four in styles.css (keyframe stops are pre-computed).
+   longexhale: in 4, out 6 (cycle 10s). triangle: in 4, hold 4, out 4 (cycle 12s). */
+.orb--longexhale { --inhale: 4s; --hold1: 0s; --exhale: 6s; --hold2: 0s; --k-body: orb-lex; --k-in: say-lex-in; --k-hold: none; --k-out: say-lex-out; }
+.orb--triangle { --inhale: 4s; --hold1: 4s; --exhale: 4s; --hold2: 0s; --k-body: orb-tri; --k-in: say-tri-in; --k-hold: say-tri-hold; --k-out: say-tri-out; }
+[data-pattern="longexhale"] { --inhale: 4s; --hold1: 0s; --exhale: 6s; --hold2: 0s; --k-pet: pet-lex; --k-in: say-lex-in; --k-hold: none; --k-out: say-lex-out; }
+[data-pattern="triangle"] { --inhale: 4s; --hold1: 4s; --exhale: 4s; --hold2: 0s; --k-pet: pet-tri; --k-in: say-tri-in; --k-hold: say-tri-hold; --k-out: say-tri-out; }
+@keyframes orb-lex { 0% { transform: scale(.6); } 40% { transform: scale(1); } 100% { transform: scale(.6); } }
+@keyframes orb-tri { 0% { transform: scale(.6); } 33%, 66% { transform: scale(1); } 100% { transform: scale(.6); } }
+@keyframes pet-lex { 0% { transform: scale(.94); } 40% { transform: scale(1.06); } 100% { transform: scale(.94); } }
+@keyframes pet-tri { 0% { transform: scale(.94); } 33%, 66% { transform: scale(1.06); } 100% { transform: scale(.94); } }
+@keyframes say-lex-in { 0%, 38% { opacity: 1; } 40%, 98% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes say-lex-out { 0%, 38% { opacity: 0; } 40%, 98% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes say-tri-in { 0%, 31% { opacity: 1; } 33%, 98% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes say-tri-hold { 0%, 31% { opacity: 0; } 33%, 64% { opacity: 1; } 66%, 100% { opacity: 0; } }
+@keyframes say-tri-out { 0%, 64% { opacity: 0; } 66%, 98% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Safety note under a tip or technique */
+.caution { display: flex; align-items: flex-start; gap: 6px; }
+.caution::before { content: "i"; flex: none; width: 15px; height: 15px; margin-top: 1px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); color: var(--text-muted); font: 800 10px/1 var(--font-display); }
+
+/* Pinned action area at the bottom of a scrolling view (the scrollbar is hidden) */
+.sticky-actions {
+  position: sticky;
+  bottom: -16px; /* the main area's bottom padding */
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: auto -18px -16px;
+  padding: 18px 18px 16px;
+  background: linear-gradient(to top, var(--bg) 72%, transparent);
+}
+
+/* Feedback form fields */
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field__label { font: 600 11.5px/1.2 var(--font-display); color: var(--text-muted); }
+.field__input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  box-shadow: var(--inset-well);
+  color: var(--text);
+  font: 600 13px/1.4 var(--font-body);
+  resize: none;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.field__input::placeholder { color: var(--text-muted); opacity: 0.75; }
+.field__preview {
+  margin: 8px 0 0;
+  max-height: 140px;
+  overflow: auto;
+  padding: 8px 10px;
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  font: 500 10.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Window shell, ported from the Windows design (design/Pausa Windows, .wbody .wcol .wh .wbar .wtabs .wrail).
+   Below 640 px wide the sections sit in a bottom tab bar; from 640 px they move to a left rail. */
+.shell {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.shell__col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.shell__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  flex: none;
+  padding: 14px 18px 0;
+}
+/* The brand on the left, as in the first beta; Recent tips (an icon) and Pause or Resume (always with
+   its word) on the right */
+.shell__head .header-title { margin: 0; }
+.shell__head .header-actions { align-items: center; gap: 8px; }
+.shell__pause { height: 34px; padding: 0 14px; white-space: nowrap; }
+.app .main { padding: 4px 18px 16px; }
+
+/* Home: Pip and the tip on the left; from 640 px the "Next nudge" and Garden cards sit on the right */
+/* Home sits in the middle of the area between the top bar and the navigation. The automatic margins make that
+   "safe": with room to spare they share it equally above and below, and in a window too short for the content
+   they shrink to nothing, so it starts at the top and scrolls instead of being cut off. */
+.home { flex: 0 0 auto; margin-block: auto; display: flex; flex-direction: column; gap: 12px; }
+.app .main[data-view="tips"] { padding-top: 20px; }
+.home__main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.home__main .empty { flex: 1; justify-content: center; margin: 0; }
+.home__side { display: none; }
+@media (min-width: 640px) {
+  .home { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 30%); gap: 14px; }
+  .home__side { display: flex; flex-direction: column; gap: 12px; align-self: start; }
+}
+/* The white card around Home's main content, as in the first beta: Pip, the headline, the tip and its buttons
+   together. The tip inside it has no card of its own (the category shows in its badge). */
+.home-main-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: var(--r-xl);
+  background: var(--card-fill);
+  box-shadow: var(--shadow-2), inset 0 1px 0 var(--spec);
+}
+.tip-card--bare { padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.home-main-card .empty { margin: 0; padding: 0; }
+
+/* The buttons under the compact Pip-and-headline layout (paused, quiet hours, no categories) */
+.home-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--card-fill);
+  box-shadow: var(--shadow-1), inset 0 1px 0 var(--spec);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+}
+button.home-card { cursor: pointer; }
+.home-card--link:hover { background: color-mix(in oklch, var(--card-fill) 92%, var(--accent) 8%); }
+.home-card h3 { margin: 0; display: flex; align-items: center; gap: 8px; font: 600 14px/1.2 var(--font-display); }
+.home-card h3 .icon { width: 18px; height: 18px; color: var(--accent); }
+.home-card__big { margin: 0; font: 600 21px/1.15 var(--font-display); }
+.home-card__strong { margin: 0; font: 800 14px/1.35 var(--font-tip); }
+.home-card__sub { margin: 0; font: 600 12.5px/1.4 var(--font-body); color: var(--text-muted); }
+.home-meter { display: block; height: 8px; border-radius: var(--r-pill); background: var(--line); overflow: hidden; }
+.home-meter > span { display: block; height: 100%; border-radius: inherit; background: var(--accent-mid); }
+
+/* Pause card timer: a ring around Pip that drains once a second (it steps with reduced motion) */
+.focus-card__ring {
+  position: absolute;
+  inset: -7px;
+  width: calc(100% + 14px);
+  height: calc(100% + 14px);
+  transform: rotate(-90deg);
+  pointer-events: none;
+  overflow: visible;
+}
+.focus-card__ring circle { fill: none; stroke-width: 3; stroke-linecap: round; }
+.focus-card__ring-track { stroke: var(--line); }
+.focus-card__ring-bar { stroke: var(--accent); stroke-dasharray: 100; }
+@media (prefers-reduced-motion: no-preference) {
+  .focus-card__ring-bar { transition: stroke-dashoffset 1s linear; }
+}
+
+/* Safety note: a warning icon, because it is a real warning (the old round "i" read as trivia) */
+.caution-note {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: color-mix(in oklch, var(--cat-gratitude) 45%, var(--surface));
+  color: var(--text);
+  font: 700 12.5px/1.4 var(--font-body);
+}
+.caution-note .icon { flex: none; width: 18px; height: 18px; margin-top: 1px; }
+
+/* Pinned action bar (Home): always visible, never below the fold */
+.shell__bar {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+.shell__bar .btn { flex: 1; }
+.shell__bar .btn--soft { flex: none; }
+
+/* Navigation: bottom tabs (narrow) and left rail (wide) */
+.tabs, .rail { background: var(--surface-2); }
+.tabs { flex: none; display: flex; gap: 2px; padding: 4px 6px; border-top: 1px solid var(--line); }
+.rail {
+  width: 184px;
+  flex: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid var(--line);
+}
+.tab {
+  flex: 1;
+  height: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font: 600 12px/1 var(--font-display);
+  cursor: pointer;
+}
+.tab:hover { background: var(--surface); }
+.tab__i { width: 52px; height: 28px; border-radius: 14px; display: grid; place-items: center; }
+.tab[aria-current="page"] { color: var(--text); }
+.tab[aria-current="page"] .tab__i { background: var(--accent); color: var(--accent-contrast); }
+.rail .tab { flex: none; flex-direction: row; justify-content: flex-start; height: 42px; padding: 0 12px; gap: 10px; font-size: 14px; }
+.rail .tab__i { width: 22px; height: 22px; background: transparent; }
+.rail .tab[aria-current="page"] { background: var(--accent); color: var(--accent-contrast); }
+.rail .tab[aria-current="page"] .tab__i { background: transparent; color: inherit; }
+.tab:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+@media (min-width: 640px) { .tabs { display: none; } }
+@media (max-width: 639.98px) { .rail { display: none; } }
+
+/* Windows title bar (from the design): the sprout, the name, Minimise and Close. Close turns red on hover. */
+.titlebar {
+  position: relative;
+  z-index: 3;
+  height: 40px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 14px;
+  background: var(--bg);
+  font: 600 13px/1 var(--font-display);
+  user-select: none;
+}
+.titlebar > .icon { width: 16px; height: 16px; color: var(--accent); pointer-events: none; }
+.titlebar__name { pointer-events: none; }
+.titlebar__cap { margin-left: auto; display: flex; }
+.titlebar__cap button { width: 46px; height: 40px; border: 0; padding: 0; background: transparent; color: var(--text); display: grid; place-items: center; cursor: default; }
+.titlebar__cap button:hover { background: var(--surface-2); }
+.titlebar__cap button.is-close:hover { background: #c42b1c; color: #fff; }
+.titlebar__cap button:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; }
+.titlebar__cap svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The focus overlay on Windows: a tint over the work area with no blur (there is no native blur behind it
+   there), so the tint is stronger to keep the card readable and the work behind it calm. */
+[data-platform="windows"] .focus-scrim { -webkit-backdrop-filter: none; backdrop-filter: none; }
+[data-platform="windows"] .focus-layer { --scrim-strength: 0.5; }
+[data-platform="windows"][data-theme="dark"] .focus-layer { --scrim-strength: 0.6; }
+@media (prefers-color-scheme: dark) {
+  [data-platform="windows"]:not([data-theme="light"]) .focus-layer { --scrim-strength: 0.6; }
+}
+
+/* The water and posture reminder cards get their own tints, like the ten categories (the dark values are
+   darker, as for the others) */
+.cat--water { --cat: oklch(0.86 0.06 235); }
+.cat--posture { --cat: oklch(0.86 0.055 295); }
+[data-theme="dark"] .cat--water { --cat: oklch(0.5 0.06 235); }
+[data-theme="dark"] .cat--posture { --cat: oklch(0.5 0.055 295); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cat--water { --cat: oklch(0.5 0.06 235); }
+  :root:not([data-theme="light"]) .cat--posture { --cat: oklch(0.5 0.055 295); }
+}
+/* "Add a breath" in the tip card: two toggle chips, Before and After the pause, off by default. A chosen
+   chip has a check and a thicker accent outline; the order they make is written out underneath. */
+.breathe-around { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.breathe-around__label { color: var(--text-muted); font: 600 13.5px/1 var(--font-body); }
+.chip-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-pill);
+  background: color-mix(in oklch, var(--surface) 70%, transparent);
+  color: var(--text);
+  font: 600 13.5px/1 var(--font-display);
+  cursor: pointer;
+}
+.chip-toggle:hover { border-color: var(--text-muted); }
+.chip-toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.chip-toggle[aria-checked="true"] {
+  border: 2px solid var(--accent);
+  background: color-mix(in oklch, var(--accent) 10%, var(--surface));
+}
+.chip-toggle .icon { width: 16px; height: 16px; }
+.chip-toggle[aria-checked="true"] .icon { color: var(--accent); stroke-width: 3; }
+/* Breathe 1 min, Tip 30s, Breathe 1 min: a dot for each step, a short line between them */
+.breathe-seq {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+  color: var(--text);
+  font: 600 13px/1.2 var(--font-body);
+}
+.breathe-seq li { display: inline-flex; align-items: center; gap: 6px; }
+.breathe-seq li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.breathe-seq li:not(:last-child)::after { content: ""; width: 16px; height: 1.5px; margin: 0 8px 0 4px; background: var(--line); }
+/* Settings: the breath for each category */
+.breath-rows { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.breath-row { display: flex; align-items: center; gap: 8px; }
+.breath-row .cat-card__icon { width: 28px; height: 28px; }
+.breath-row__name { flex: 1; min-width: 0; font: 600 14px/1.2 var(--font-display); }
+.breath-row .chip-toggle { height: 30px; padding: 0 10px; font-size: 12.5px; }
+/* Esc and Later sit at the right of the badge row, and a chosen chip holds the auto-dismiss ring still */
+.focus-card__top .focus-card__hint { margin-left: auto; }
+.focus-card.is-held .focus-card__timer rect { animation-play-state: paused; }
+.onboarding__look { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 8px; margin-top: 6px; text-align: left; }
+.onboarding__look .note { text-align: center; }
+
+/* History: what became of each tip (the list is saved, so it survives a restart) */
+.history-item { align-items: center; }
+.history-item__state { flex: none; display: inline-flex; align-items: center; gap: 4px; font: 700 11.5px/1 var(--font-display); color: var(--text-muted); }
+.history-item__state .icon { width: 13px; height: 13px; stroke-width: 3; }
+.history-item__state--done { color: var(--accent); }
+
+/* Welcome: a progress bar, one step at a time, and a pinned Back / Continue bar */
+.onboarding { position: relative; z-index: 1; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.onboarding__progress { display: flex; align-items: center; gap: 12px; padding: 16px 18px 6px; }
+.onboarding__segs { flex: 1; display: flex; gap: 6px; }
+.onboarding__segs span { flex: 1; height: 4px; border-radius: 2px; background: var(--line); }
+.onboarding__segs span.is-done { background: var(--accent-mid); }
+.onboarding__count { font: 700 12px/1 var(--font-display); color: var(--text-muted); white-space: nowrap; }
+.onboarding__body { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 18px 16px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; }
+.onboarding__center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
+.onboarding__title { margin: 0; font: 700 26px/1.1 var(--font-display); }
+.onboarding .shell__bar .btn--ghost { flex: none; }
+.onboarding__pin { width: 100%; max-width: 360px; align-self: center; }
+.onboarding__pin-bg { fill: var(--surface-2); }
+.onboarding__pin-fly { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.onboarding__pin-cell { fill: var(--line); }
+.onboarding__pin-pip { fill: var(--accent); }
+.onboarding__pin-bar { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.onboarding__pin-drag { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 6; }
+.onboarding__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.onboarding__list li { display: flex; align-items: center; gap: 10px; font: 600 14px/1.35 var(--font-body); }
+.onboarding__num { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--accent-contrast); font: 700 12px/1 var(--font-display); }
+
+/* Settings extras */
+.btn--sm { height: 32px; padding: 0 12px; font-size: 13px; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.settings-row .note { flex: 1; min-width: 0; }
+.settings-version { grid-column: 1 / -1; text-align: center; }
+.status-pill {
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  background: color-mix(in oklch, var(--cat-present-moment) 38%, var(--surface));
+  color: var(--text);
+  font: 700 12.5px/1.3 var(--font-body);
+  text-align: center;
+}
+.cat-dots { display: flex; flex-wrap: wrap; gap: 6px; }
+/* A row of the picker's own tinted icons (.cat-card__icon), so Settings and the picker match */
+.cat-dots { gap: 8px; }
+.cat-dots .cat-card__icon { width: 32px; height: 32px; }
+.cat-dots .cat-card__icon .icon { width: 18px; height: 18px; }
+
+/* Categories picker: any number can be chosen. A chosen card has a thick outline, a tinted fill and a
+   filled check; an unchosen one is neutral with an empty square, so state never relies on colour alone. */
+.count-pill { padding: 5px 12px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-contrast); font: 700 12px/1 var(--font-display); }
+.cat-picker__intro { margin: 0; color: var(--text-muted); font: 600 13px/1.4 var(--font-body); }
+.cat-picker__actions { display: flex; gap: 6px; }
+.cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cat-card:hover { border-color: var(--text-muted); }
+.cat-card:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+.cat-card[aria-checked="true"] {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  background: color-mix(in oklch, var(--cat) 38%, var(--surface));
+}
+.cat-card__head { display: flex; align-items: center; gap: 8px; }
+.cat-card__icon { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--cat); color: var(--cat-ink); }
+.cat-card__icon .icon { width: 16px; height: 16px; }
+.cat-card__name { flex: 1; min-width: 0; font: 600 14px/1.15 var(--font-display); }
+.cat-card__box { flex: none; width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--text-muted); display: grid; place-items: center; color: var(--accent-contrast); }
+.cat-card__box .icon { width: 14px; height: 14px; stroke-width: 3; }
+.cat-card[aria-checked="true"] .cat-card__box { background: var(--accent); border-color: var(--accent); }
+.cat-card__blurb { font: 600 12.5px/1.35 var(--font-body); color: var(--text-muted); }
+.cat-card[aria-checked="true"] .cat-card__blurb { color: var(--text); }
+.cat-card__adds { font: 700 12px/1.3 var(--font-body); color: var(--text); }
+
+/* Garden: the title stays at the top like the other sections, and what is under it is centred in the
+   space that is left (safely, as for Home) */
+.main[data-view="garden"] > :nth-child(2) { margin-top: auto; }
+.main[data-view="garden"] > :last-child { margin-bottom: auto; }
+
+/* Garden: the remaining count is the headline, then a bar between the two stage thresholds */
+.garden-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: var(--r-lg);
+  background: var(--card-fill);
+  box-shadow: var(--shadow-1), inset 0 1px 0 var(--spec);
+}
+.garden-hero__text { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+.garden-hero__big { margin: 0; font: 600 24px/1.15 var(--font-display); text-wrap: balance; }
+.garden-hero__sub { margin: 0; font: 600 13px/1.4 var(--font-body); color: var(--text-muted); }
+.garden-meter { display: flex; flex-direction: column; gap: 6px; }
+.garden-meter__labels { display: flex; justify-content: space-between; font: 800 12px/1 var(--font-tip); color: var(--text-muted); }
+.garden__stage.is-current { border-radius: var(--r-sm); box-shadow: inset 0 0 0 1.5px var(--accent); padding: 8px 2px; }
+.garden__name { font-weight: 600; }
+.garden__meta { font: 600 10.5px/1.3 var(--font-body); color: var(--text-muted); }
+
+/* Section titles in a view header match the Home header's size and height */
+.main .view-head { min-height: 44px; margin-top: 6px; }
+.main .view-head .view-title { font-size: 21px; }
+
+/* A title placed straight in the main column (Breathe's picker) must not grow: the design system's
+   .view-title has flex: 1 for use inside a row header. Match the Home header's height and position. */
+.main > .view-title {
+  flex: none;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 6px 0 0;
+  font-size: 21px;
+}
+/* Breathe has nothing in its header row but the hidden Back button, so drop the empty row */
+.main[data-view="breathe"] > .view-head { display: none; }
+
+/* Breathe session: the orb is centred in the free space, with Pip beside it */
+.breathe-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.breathe-stage { text-align: center; }
+.breathe-head { display: flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 6px; }
+.breathe-head h2 { flex: 1; margin: 0; font: 600 21px/1.1 var(--font-display); }
+.breathe-count { margin-top: 18px; min-height: 56px; font: 800 56px/1 var(--font-display); font-variant-numeric: tabular-nums; color: var(--text); }
+.breathe-count.is-idle { color: var(--text-muted); opacity: 0.55; }
+/* Fixed height: a caption that wraps to two lines never moves the buttons below */
+.breathe-caption { margin: 6px 0 0; min-height: 56px; max-width: 320px; font: 600 20px/1.25 var(--font-display); color: var(--text); }
+.breathe-stage .caution-note { margin-top: 8px; max-width: 360px; text-align: left; }
+/* The bar under a Breathe screen: full width, with a divider, like Home's bar */
+.sticky-actions.breathe-bar, .sticky-actions.pinned-bar {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.breathe-bar .btn--primary, .pinned-bar .btn--primary { flex: 1; }
+/* A note or error above the buttons inside a pinned bar takes its own row */
+.pinned-bar { flex-wrap: wrap; }
+.pinned-bar .bar-note { flex: 1 1 100%; margin: 0; color: var(--text); }
+/* A session screen has the whole window: no tab bar, no rail */
+.shell--session .tabs, .shell--session .rail { display: none !important; }
+/* The orb waits at its small size until Begin, and stands still while paused */
+.orb.is-rest, .orb.is-rest * { animation: none !important; }
+.orb.is-rest .orb__breath { transform: scale(0.6); }
+.orb.is-rest .orb__bar { stroke-dashoffset: 100; }
+.breathe-stage .orb .orb__bar { animation-iteration-count: 1; animation-fill-mode: forwards; }
+.breathe-stage.is-paused *, .breathe-stage.is-paused *::before { animation-play-state: paused !important; }
+
+/* Technique cards: a radio mark (filled with a check when chosen), the rhythm in words, one line of feel */
+.pattern-card { align-items: stretch; text-align: left; }
+.pattern-card__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pattern-card__mark { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--text-muted); display: grid; place-items: center; color: var(--accent-contrast); }
+.pattern-card__mark .icon { width: 14px; height: 14px; stroke-width: 3; }
+.pattern-card[aria-checked="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.pattern-card[aria-checked="true"] .pattern-card__mark { background: var(--accent); border-color: var(--accent); }
+.pattern-card__rhythm { white-space: normal; line-height: 1.3; letter-spacing: 0.02em; }
+.pattern-card__blurb { font: 600 12px/1.35 var(--font-body); color: var(--text-muted); }
+
+.breathe-orbwrap { position: relative; display: flex; justify-content: center; }
+.breathe-pip { position: absolute; right: 100%; bottom: 30px; margin-right: -14px; z-index: 1; }
+
+/* The sections are reached from the navigation, so their own Back buttons are not needed.
+   History and Feedback are sub-views and keep theirs. */
+.main[data-view="settings"] .btn--back,
+.main[data-view="breathe"] .btn--back,
+.main[data-view="garden"] .header-btn[aria-label="Back"] { display: none; }

@@ -1,0 +1,97 @@
+# Builds the Pausa installer for Windows 11 (x64). On a version tag (v*) it also publishes a GitHub release
+# with the installer and its SHA-256, which is what the winget manifest points at.
+#
+# FEEDBACK. Only the feedback address is compiled into the installer (see src-tauri/src/feedback.rs).
+# It is not a secret: the installer is public, and it carries no key or access code. The server limits
+# what can be sent. To turn feedback on, add one repository secret (Settings, Secrets and variables, Actions):
+#   PAUSA_FEEDBACK_URL   the Supabase project URL, without a trailing path
+# Without it the build still works, but its installer cannot send feedback (the form says so).
+#
+# The installer is not code signed, so Windows SmartScreen will warn when it is opened.
+
+name: Windows build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+concurrency:
+  group: windows-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write # to create the release on a tag; a plain build only reads
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check the tips data and the TypeScript
+        run: |
+          npm run validate:tips
+          npx tsc --noEmit
+
+      # Says only whether feedback will work in this build, never the value itself
+      - name: Feedback endpoint
+        shell: pwsh
+        run: |
+          $configured = '${{ secrets.PAUSA_FEEDBACK_URL != '' }}'
+          if ($configured -eq 'true') { Write-Host 'Feedback endpoint: configured' }
+          else { Write-Host 'Feedback endpoint: NOT configured (the PAUSA_FEEDBACK_URL secret is missing). The installer cannot send feedback.' }
+
+      - name: Build the installer
+        env:
+          PAUSA_FEEDBACK_URL: ${{ secrets.PAUSA_FEEDBACK_URL }}
+        run: npm run tauri build -- --bundles nsis
+
+      - name: Find the installer
+        id: installer
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem src-tauri/target/release/bundle/nsis -Filter *.exe | Select-Object -First 1
+          if (-not $exe) { throw 'No installer was produced.' }
+          $hash = (Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower()
+          Write-Host "Installer: $($exe.Name)"
+          Write-Host "Size: $([math]::Round($exe.Length / 1MB, 1)) MB"
+          Write-Host "SHA-256: $hash"
+          "path=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "hash=$hash" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "### Pausa Windows installer`n`n- File: ``$($exe.Name)```n- SHA-256: ``$hash```n- Unsigned: Windows SmartScreen will warn when it is opened." | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pausa-windows-x64-nsis
+          path: ${{ steps.installer.outputs.path }}
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+          INSTALLER: ${{ steps.installer.outputs.path }}
+          HASH: ${{ steps.installer.outputs.hash }}
+        run: |
+          $notes = "Windows 11 (x64) installer. Not code signed: SmartScreen may warn, choose More info, then Run anyway.`n`nSHA-256: ``$env:HASH``"
+          $prerelease = if ($env:TAG -match '-') { '--prerelease' } else { '' }
+          gh release create $env:TAG $env:INSTALLER --title "Pausa $env:TAG" --notes $notes $prerelease

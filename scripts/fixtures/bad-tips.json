@@ -1,0 +1,8 @@
+[
+  { "id": 1, "text": "This tip will cure your anxiety for good.", "category": "breathing", "timeOfDay": ["morning"], "duration": "30s", "status": "approved" },
+  { "id": 1, "text": "Take three slow breaths and relax.", "category": "breathing", "timeOfDay": ["morning"], "duration": "30s", "status": "approved" },
+  { "id": 2, "text": "Take three slow breaths and relax.", "category": "breathing", "timeOfDay": ["morning"], "duration": "30s", "status": "approved" },
+  { "id": 3, "text": "Hold your breath for as long as you can.", "category": "breathing", "timeOfDay": ["morning"], "duration": "30s", "status": "approved" },
+  { "id": 4, "text": "Close your eyes and listen.", "category": "mystery", "timeOfDay": [], "duration": "soon", "status": "maybe" },
+  { "id": 5, "text": "Take three slow breaths and relax now please.", "category": "breathing", "timeOfDay": ["night"], "duration": "30s", "status": "draft" }
+]

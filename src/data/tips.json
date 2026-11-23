@@ -1,0 +1,1563 @@
+[
+  {
+    "id": 1,
+    "text": "Take three slow breaths. With each exhale, let your shoulders drop a little further.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved"
+  },
+  {
+    "id": 2,
+    "text": "Name three things you can see right now. Really look at each one for a moment.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved"
+  },
+  {
+    "id": 3,
+    "text": "Place your hand on your heart. Feel the warmth and steady rhythm beneath your palm.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "evening",
+      "night"
+    ],
+    "duration": "15s",
+    "status": "approved"
+  },
+  {
+    "id": 4,
+    "text": "Think of one person who made your day better. Send them a silent thank you.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "evening",
+      "night"
+    ],
+    "duration": "15s",
+    "status": "approved"
+  },
+  {
+    "id": 5,
+    "text": "Imagine someone you care about is having a hard day. Silently wish them peace and ease.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved"
+  },
+  {
+    "id": 101,
+    "text": "Try box breathing: in for 4, hold for 4, out for 4, hold for 4. Follow the orb.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1 min",
+    "technique": "box",
+    "status": "approved",
+    "caution": "breath-hold"
+  },
+  {
+    "id": 102,
+    "text": "Wind down with 4-7-8 breathing: in for 4, hold for 7, out slowly for 8. Follow the orb.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1 min",
+    "technique": "478",
+    "status": "approved",
+    "caution": "breath-hold"
+  },
+  {
+    "id": 103,
+    "text": "Try coherent breathing: smooth, even breaths, about 5 seconds in and 5 out. Follow the orb.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1 min",
+    "technique": "coherent",
+    "status": "approved"
+  },
+  {
+    "id": 104,
+    "text": "Take a physiological sigh: two short breaths in through the nose, then one long sigh out.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1 min",
+    "technique": "sigh",
+    "status": "approved"
+  },
+  {
+    "id": 105,
+    "text": "Try a long exhale: in for 4, out for 6. Let the out-breath do the work. Follow the orb.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1 min",
+    "technique": "longexhale",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 106,
+    "text": "Try triangle breathing: in for 4, hold for 4, out for 4. Follow the orb.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1 min",
+    "technique": "triangle",
+    "caution": "breath-hold",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 201,
+    "text": "Breathe in through your nose for a count of four. Let the breath out like you're fogging a window.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 202,
+    "text": "Place a hand on your belly. Feel it rise as you breathe in and soften as you breathe out.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 203,
+    "text": "Take one breath that's slower than the last. Then one more.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 204,
+    "text": "Let your next exhale be twice as long as your inhale. Just once, just to see how it feels.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 205,
+    "text": "Notice where your breath is right now: chest, belly or throat. No need to change it, just notice.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 206,
+    "text": "Breathe in for four, out for four. Let your jaw unclench on the way out.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 207,
+    "text": "Sigh out loud, quietly if you need to. Let it come out as long as it wants.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 208,
+    "text": "Take one breath before you reply to the next message. One is enough.",
+    "category": "breathing",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 209,
+    "text": "Name one thing on your desk that makes work a little easier. Say a quiet thanks to it.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 210,
+    "text": "Think of something that went okay today, even if it was small. Let it count.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 211,
+    "text": "Remember a meal you enjoyed this week. Taste it again in your mind for a moment.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 212,
+    "text": "Who helped you recently? Think about telling them, later today, in one sentence.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 213,
+    "text": "Notice something your body did for you today: walked, carried, typed, held. Thank it.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 214,
+    "text": "Look for one thing in the room that you're glad to have. Rest your eyes on it.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 215,
+    "text": "Think of a place where you feel at ease. Be glad it exists, even if you're not there now.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 216,
+    "text": "Recall a kind message you once received. Let it warm you again for a few seconds.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 217,
+    "text": "What's something you learned recently? Appreciate the person or moment that taught you.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 218,
+    "text": "Think of three small comforts waiting for you tonight: a drink, a seat, a quiet minute.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 219,
+    "text": "Remember a moment today when something just worked. Enjoy it for a breath.",
+    "category": "gratitude",
+    "timeOfDay": [
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 220,
+    "text": "Check your forehead. If it's tight, let it smooth out, like a calm lake.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 221,
+    "text": "Notice your jaw. Let your teeth part a little and your tongue rest.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 222,
+    "text": "Feel your shoulders. On your next breath out, let them drop away from your ears.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 223,
+    "text": "Notice your hands. Are they gripping? Let your fingers open and rest.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 224,
+    "text": "Feel the weight of your feet on the floor. Let the floor hold them.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 225,
+    "text": "Scan from the top of your head to your toes, once, slowly. Just notice, no fixing.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 226,
+    "text": "Notice how you're sitting. Let the chair support your back and soften your belly.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 227,
+    "text": "Check your eyes. Look away from the screen and blink slowly a few times.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 228,
+    "text": "Feel your breath move your ribs. Notice the gentle widening and settling.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 229,
+    "text": "If it's comfortable here, close your eyes for three breaths and feel your hands resting.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "caution": "eyes-closed",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 230,
+    "text": "Find the place in your body that feels most at ease right now. Stay with it for a breath.",
+    "category": "body-scan",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 231,
+    "text": "Listen for the farthest sound you can hear. Then the nearest one.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 232,
+    "text": "Feel what's under your hands right now: the texture, the temperature.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 233,
+    "text": "Notice three colors around you. Let your eyes rest on each one.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 234,
+    "text": "Sip your drink slowly. Notice the temperature and the taste.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 235,
+    "text": "Look around as if you've just arrived. Where are you, right now?",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 236,
+    "text": "Notice your clothes on your skin. Then the air on your face.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 237,
+    "text": "Between tasks, take one breath and ask: what is happening right now?",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 238,
+    "text": "Find something that's moving: a curtain, a cursor, a cloud. Watch it for a few seconds.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 239,
+    "text": "Listen to the sounds in the room. Let them come and go without naming them.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 240,
+    "text": "Feel your feet, your seat, your hands. You're here.",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 241,
+    "text": "Look at something near you as if you'd never seen it. What do you notice?",
+    "category": "present-moment",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 242,
+    "text": "Speak to yourself the way you would to a friend who's doing their best. What would you say?",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 243,
+    "text": "If it's a hard day, put a hand on your shoulder and say: this is hard, and I'm doing my best.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 244,
+    "text": "Think of a colleague. Silently wish them a calm afternoon.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 245,
+    "text": "Everyone you meet today is carrying something you can't see. Be a little gentler.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 246,
+    "text": "Notice a harsh thought about yourself. Answer it with one kind sentence.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 247,
+    "text": "Wish yourself something simple: may I be patient with this moment.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 248,
+    "text": "Think of someone who has been kind to you. Silently wish them well.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 249,
+    "text": "You don't have to be productive every minute. Give yourself permission to pause.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 250,
+    "text": "Think of someone you find difficult. Wish them, just briefly, a little ease.",
+    "category": "compassion",
+    "timeOfDay": [
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 251,
+    "text": "Offer yourself the patience you'd offer a new teammate learning something hard.",
+    "category": "compassion",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 252,
+    "text": "Imagine a friend sitting beside you. What kind thing would they say right now?",
+    "category": "compassion",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 253,
+    "text": "Roll your shoulders back three times, slowly. Then forward three times.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 254,
+    "text": "Stand up and reach your arms overhead. Take one slow breath, then let them float down.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 255,
+    "text": "Gently turn your head to the right, then the left. Go only as far as feels comfortable.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 256,
+    "text": "Stretch your wrists: open and close your hands slowly, five times.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 257,
+    "text": "Stand and shift your weight slowly from one foot to the other. Feel the floor.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 258,
+    "text": "Roll your ankles in small circles, one foot at a time.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 259,
+    "text": "Interlace your fingers, turn your palms out and stretch your arms in front of you.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 260,
+    "text": "Walk to a window or the next room slowly. Feel each step.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "1min",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 261,
+    "text": "Let your head tip gently toward one shoulder, then the other. Breathe slowly.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 262,
+    "text": "Stand up and shake out your hands for a few seconds. Let your arms feel loose.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 263,
+    "text": "Sit tall, then slouch softly, then sit tall again. Find the position that feels easy.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 264,
+    "text": "Press your palms together in front of your chest and breathe. Feel the gentle pressure.",
+    "category": "movement",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 265,
+    "text": "Look out of a window for ten seconds. Find the farthest thing you can see.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 266,
+    "text": "Notice the light in the room. Where is it coming from, and what does it touch?",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 267,
+    "text": "Think of a tree you know. Picture its trunk, its leaves, its stillness.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 268,
+    "text": "If you can, open a window for a moment. Notice the air, the sounds, the temperature.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 269,
+    "text": "Find something natural near you: a plant, wood, a stone. Look at it closely for a few breaths.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 270,
+    "text": "Picture a place in nature where you feel calm. What do you see, hear and smell there?",
+    "category": "nature",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 271,
+    "text": "Look at the sky for a moment. Notice the color and any movement.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 272,
+    "text": "Listen for anything alive outside: birds, wind, leaves, rain.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 273,
+    "text": "Imagine your breath as the wind moving slowly through branches.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 274,
+    "text": "Notice the weather today. Feel it, even if you're indoors.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 275,
+    "text": "Think of water: a stream, the sea, rain. Let the picture slow you down for a moment.",
+    "category": "nature",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 276,
+    "text": "Step outside if you can, even for a minute. Notice three things that aren't screens.",
+    "category": "nature",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 277,
+    "text": "Write down one thing that's on your mind. Putting it on paper gives your head some room.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 278,
+    "text": "Finish this sentence: right now I feel... Write the first words that come.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 279,
+    "text": "Write one thing you're looking forward to, even something small.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 280,
+    "text": "What would make the rest of today feel good enough? Jot down one thing.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 281,
+    "text": "Note one thing that went well today, and what helped it go well.",
+    "category": "journaling",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 282,
+    "text": "Write a single sentence about how your body feels right now.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 283,
+    "text": "What are you carrying that isn't yours to carry? Write it down, then set it aside.",
+    "category": "journaling",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 284,
+    "text": "List three things you can let be good enough today.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 285,
+    "text": "Write down one thing you did today that you're glad you did.",
+    "category": "journaling",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 286,
+    "text": "Jot down what you need most in the next hour. Then see if you can give it to yourself.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 287,
+    "text": "Write one kind sentence to yourself, as if from a friend.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 288,
+    "text": "Name one thing you're learning right now. Write it down in your own words.",
+    "category": "journaling",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "1min",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 289,
+    "text": "Choose one task for the next ten minutes. Close the other tabs, or at least don't look at them.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 290,
+    "text": "Take a breath and ask: what's the one thing that matters most right now?",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 291,
+    "text": "Set your phone face down for a few minutes. Notice what that feels like.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 292,
+    "text": "Look at the task in front of you. What's the very first, smallest step?",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 293,
+    "text": "Soften your gaze for a moment, then bring it back to one thing on your screen.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 294,
+    "text": "Before your next task, take one slow breath and decide how you want to start.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 295,
+    "text": "Finish what you're doing before switching. If you can't, write down where you stopped.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 296,
+    "text": "Notice if you're doing three things at once. Choose one, just for now.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 297,
+    "text": "Rest one hand on your desk. Let it remind you to come back to the task.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 298,
+    "text": "Pick a tiny goal for the next five minutes. Say it quietly to yourself.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 299,
+    "text": "Look at something far away for twenty seconds, then return with fresh eyes.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 300,
+    "text": "Notice your posture. Adjust it so your body is ready for what you're doing.",
+    "category": "focus",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "caution": "movement",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 301,
+    "text": "Notice a thought that keeps circling. Imagine placing it on a cloud and watching it drift.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 302,
+    "text": "Unclench something: your fists, your jaw, your shoulders. Let one thing go.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 303,
+    "text": "Name a worry, then silently say: not right now. Breathe out.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 304,
+    "text": "Imagine setting down a heavy bag you've been carrying. Feel the lightness in your arms.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 305,
+    "text": "You can't finish everything today. Choose what can wait.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 306,
+    "text": "Breathe out slowly and let one expectation go for the next hour.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 307,
+    "text": "Picture a leaf on a stream. Place a thought on it and watch it float away.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 308,
+    "text": "Notice what you're holding onto. Is it helping you right now?",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 309,
+    "text": "Let your last meeting or message stay in the past. Take a breath and begin fresh.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 310,
+    "text": "Say to yourself: I did what I could. Breathe out and let the rest settle.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 311,
+    "text": "Open your hands, palms up, for a moment. Let the day's small worries rest.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "afternoon",
+      "evening",
+      "night"
+    ],
+    "duration": "15s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  },
+  {
+    "id": 312,
+    "text": "Let your thoughts be like weather: they pass. You don't have to follow them.",
+    "category": "letting-go",
+    "timeOfDay": [
+      "morning",
+      "afternoon",
+      "evening"
+    ],
+    "duration": "30s",
+    "status": "approved",
+    "reviewed": "2026-11-20"
+  }
+]
