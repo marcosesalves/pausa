@@ -17,19 +17,9 @@ npm-debug.log*
 supabase/.temp/
 feedback-export/
 
-# Editors, OS and AI-tool files
+# Editors and OS files
 .vscode/
 .idea/
-.cursor/
-.claude/
-.conductor/
 .DS_Store
 *.suo
 *.sw?
-
-# Local notes, plans and design sources: kept on the machine, not in the repo
-docs/
-design/
-social/
-CLAUDE.md
-AGENTS.md
