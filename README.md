@@ -6,6 +6,7 @@
 
 <p align="center">
   A small desktop companion for mindful pauses at work.<br>
+  <a href="https://marcosesalves.github.io/pausa-landing-page/">Website</a> ·
   <a href="https://www.instagram.com/pausa.companion/">Instagram</a>
 </p>
 
