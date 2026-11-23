@@ -92,6 +92,12 @@ jobs:
           INSTALLER: ${{ steps.installer.outputs.path }}
           HASH: ${{ steps.installer.outputs.hash }}
         run: |
+          # A tag pushed again (or moved) must not touch a release that is already published
+          gh release view $env:TAG *> $null
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "Release $env:TAG already exists, leaving it as it is."
+            exit 0
+          }
           $notes = "Windows 11 (x64) installer. Not code signed: SmartScreen may warn, choose More info, then Run anyway.`n`nSHA-256: ``$env:HASH``"
           $prerelease = if ($env:TAG -match '-') { '--prerelease' } else { '' }
           gh release create $env:TAG $env:INSTALLER --title "Pausa $env:TAG" --notes $notes $prerelease

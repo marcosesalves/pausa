@@ -38,16 +38,28 @@ With winget:
 winget install MarcosAlves.Pausa
 ```
 
-Or download `Pausa_<version>_x64-setup.exe` from the [latest release](../../releases/latest) and run it. It
+Or download `Pausa_<version>_x64-setup.exe` from the [releases page](../../releases) and run it. It
 installs for your user only, with no administrator rights.
 
 The installer is not code signed yet, so Windows SmartScreen may show "Windows protected your PC". Choose
 **More info**, then **Run anyway**. To check the file first, compare the SHA-256 in the release notes with
 `Get-FileHash <file>`.
 
-### macOS (Apple silicon or Intel)
+### macOS
 
-There is no download for macOS yet, so build it yourself. You need [Node.js](https://nodejs.org) 20 or newer, a
+**Apple silicon (M1 or later):** download `Pausa_<version>_aarch64.dmg` from the
+[releases page](../../releases), open it and drag **Pausa** into **Applications**.
+
+Pausa is not signed with an Apple Developer certificate yet, so macOS blocks it the first time. Open Pausa and
+click **Done** on the warning, then open **System Settings, Privacy & Security**, scroll to **Security**, click
+**Open Anyway** and confirm. If macOS says the app "is damaged and can't be opened", that is the same block for
+unsigned downloads; run this once in Terminal and open Pausa again:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Pausa.app
+```
+
+**Intel Macs, or if you prefer to build it yourself:** you need [Node.js](https://nodejs.org) 20 or newer, a
 stable [Rust](https://rustup.rs) toolchain and the Xcode command line tools (`xcode-select --install`).
 
 ```bash
